@@ -1,27 +1,27 @@
-from openai import AsyncOpenAI
+from google import genai
+from google.genai import types
 from telethon import TelegramClient, events
 from telethon.errors import MessageIdInvalidError
 from config import Config
 from text import Text
 from prompt import Prompt
 
-openai_client = AsyncOpenAI(
-    api_key=Config.OPENAI_API_KEY,
-    base_url=Config.OPENAI_API_BASE
+gemini_client = genai.Client(
+    api_key=Config.GEMINI_API_KEY
 )
 
 client = TelegramClient(Config.SESSION_NAME, Config.API_ID, Config.API_HASH)
 
 async def get_response(user_message, system_prompt):
     try:
-        completion = await openai_client.chat.completions.create(
-            model=Config.MODEL_NAME,
-            messages=[
-                {"role": "system", "content": system_prompt},
-                {"role": "user", "content": user_message}
-            ]
+        response = await gemini_client.aio.models.generate_content(
+            model=Config.GEMINI_MODEL,
+            contents=user_message,
+            config=types.GenerateContentConfig(
+                system_instruction=system_prompt,
+            ),
         )
-        return completion.choices[0].message.content
+        return response.text
     except Exception as e:
         print(f"{Text.ERROR_PREFIX}{str(e)}")
         return Text.ERROR
@@ -65,7 +65,9 @@ async def help_handler(event):
 
 @client.on(events.NewMessage(outgoing=True, pattern=r'^!ask(?:\s+(.*))?$'))
 async def ask_handler(event):
+    print(f"Triggered ask_handler. Sender ID: {event.sender_id}, Config Owner ID: {Config.OWNER_ID}", flush=True)
     if Config.OWNER_ID and event.sender_id != Config.OWNER_ID:
+        print(f"Ignored: Sender ID {event.sender_id} does not match Owner ID {Config.OWNER_ID}", flush=True)
         return
 
     query = event.pattern_match.group(1)
@@ -107,6 +109,7 @@ async def ask_handler(event):
         await client.send_message(event.chat_id, response)
 
 def main():
+    print("Starting Teleflow...", flush=True)
     client.start()
     client.run_until_disconnected()
 

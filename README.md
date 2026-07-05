@@ -1,9 +1,9 @@
-# 🤖 TeleAgent
+# 🤖 teleflow
 
 > **Your intelligent, human-like Telegram Userbot powered by LLMs.**  
 > *Seamlessly integrated, context-aware, and strictly secure.*
 
-**TeleAgent** is a powerful Userbot that connects your Telegram account to OpenAI (or compatible APIs). It acts on your behalf, allowing you to reply to messages using AI with deep context awareness, while maintaining your personal style and privacy.
+**teleflow** is a powerful Userbot that connects your Telegram account to Gemini. It acts on your behalf, allowing you to reply to messages using AI with deep context awareness, while maintaining your personal style and privacy.
 
 ---
 
@@ -30,13 +30,13 @@
 ### 1. Requirements
 - Python 3.8+
 - A Telegram Account (Phone number)
-- API Keys (Telegram & OpenAI)
+- API Keys (Telegram & Gemini)
 
 ### 2. Installation
 Clone the repo and enter the directory:
 ```bash
-git clone https://github.com/DeepPythonist/TeleAgent.git
-cd TeleAgent
+git clone https://github.com/DeepPythonist/teleflow.git
+cd teleflow
 ```
 
 Create your configuration file:
@@ -46,11 +46,10 @@ Create your configuration file:
     API_ID=123456
     API_HASH=abcdef123456...
     
-    OPENAI_API_KEY=sk-proj-...
-    OPENAI_API_BASE=https://api.openai.com/v1  # (Optional) Custom API URL
-    MODEL_NAME=gpt-4o  # (Optional) Model name
+    GEMINI_API_KEY=AQ.Ab8...
+    GEMINI_MODEL=gemini-2.5-flash  # (Optional) Model name
     
-    SESSION_NAME=teleagent  # (Optional) Telethon session name
+    SESSION_NAME=teleflow_session  # (Optional) Telethon session name
     OWNER_ID=123456789  # (Optional) Restrict commands to your ID
     ```
 
@@ -80,10 +79,9 @@ python launcher.py
 | Variable | Description |
 | :--- | :--- |
 | `API_ID` / `API_HASH` | Get these from [my.telegram.org](https://my.telegram.org). |
-| `OPENAI_API_KEY` | Your API key from OpenAI or a compatible provider. |
-| `OPENAI_API_BASE` | (Optional) URL for custom API providers (e.g., AvalAI). |
-| `MODEL_NAME` | (Optional) Model to use (e.g., `gpt-4o`, `gpt-3.5-turbo`). |
-| `SESSION_NAME` | (Optional) Name of the session file (default: `teleagent_session`). |
+| `GEMINI_API_KEY` | Your Google Gemini API key from Google AI Studio. |
+| `GEMINI_MODEL` | (Optional) Model to use (default: `gemini-2.5-flash`). |
+| `SESSION_NAME` | (Optional) Name of the session file (default: `teleflow_session`). |
 | `OWNER_ID` | (Optional) Restrict commands to this specific User ID. |
 
 ---

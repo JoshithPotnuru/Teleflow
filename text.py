@@ -1,6 +1,6 @@
 class Text:
     HELP = """
-**TeleAgent Help**
+**teleflow Help**
 
 Use the following commands:
 - `!ask <question>`: Ask the AI a question. The bot will edit your message with the answer.
