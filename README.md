@@ -1,91 +1,205 @@
-# 🤖 teleflow
+# 🤖 TeleFlow
 
-> **Your intelligent, human-like Telegram Userbot powered by LLMs.**  
-> *Seamlessly integrated, context-aware, and strictly secure.*
+> **An Intelligent, Context-Aware Telegram AI Userbot powered by Google Gemini**
+>
+> *Reply naturally, preserve conversation context, and communicate in your own style.*
 
-**teleflow** is a powerful Userbot that connects your Telegram account to Gemini. It acts on your behalf, allowing you to reply to messages using AI with deep context awareness, while maintaining your personal style and privacy.
+---
+
+## 📌 Overview
+
+**TeleFlow** is an AI-powered Telegram Userbot that connects your Telegram account with Google's Gemini models. It generates intelligent, context-aware replies by understanding the entire conversation thread, allowing you to respond naturally while maintaining your own communication style.
 
 ---
 
 ## ✨ Features
 
-- **🧠 Deep Context Awareness**: Replies are not isolated! The bot reads the **entire reply chain** (history, sender names, timestamps) to understand the full conversation context.
-- **🗣️ Human Mode**: responses are formatted like a real human (no formal punctuation, casual tone).
-- **🎭 Custom Persona**: Acts as **Marcel** (or your custom identity) — a nationalist, programmer, and critical thinker.
-- **👻 Ghost Mode**:
-    - **Auto-Delete**: The `!ask` command is instantly deleted.
-    - **Direct Reply**: The AI response is sent as a new message from *you*.
-- **⚡ Smart Input**:
-    - Give instructions: `!ask Roast him` -> The AI roasts the target.
-    - Draft replies: `!ask I disagree` -> The AI writes a full argument based on your stance.
-    - **Auto-Participate**: Reply with just `!ask` (no text) to let the AI join the conversation naturally.
-- **🔒 Secure & Private**:
-    - **Strict ID Check**: Only responds to commands from the `OWNER_ID`.
-    - **Error Privacy**: Errors are logged to the terminal, not the chat.
+- 🧠 **Deep Context Awareness**
+  - Reads the complete reply chain.
+  - Understands previous messages, sender names, and timestamps.
+  - Produces highly contextual responses.
+
+- 🤖 **Powered by Gemini**
+  - Uses Google's latest Gemini models.
+  - Fast, natural, and intelligent responses.
+
+- 🗣️ **Human-like Responses**
+  - Casual conversational style.
+  - No robotic formatting.
+  - Sounds like you wrote it.
+
+- 🎭 **Custom Persona**
+  - Define your own personality and writing style.
+  - Easily customize prompts.
+
+- 👻 **Ghost Mode**
+  - Deletes the `!ask` command automatically.
+  - Sends the generated response directly from your account.
+
+- ⚡ **Smart Reply Generation**
+  - `!ask`
+    - Automatically joins the conversation.
+  - `!ask <instruction>`
+    - Generate replies based on your instructions.
+  - `!ask I disagree`
+    - Writes a complete contextual response.
+
+- 🔒 **Privacy First**
+  - OWNER_ID protection.
+  - Local session storage.
+  - Errors are shown only in the terminal.
 
 ---
 
-## 🚀 Quick Start in 3 Steps
+# 🛠 Tech Stack
 
-### 1. Requirements
-- Python 3.8+
-- A Telegram Account (Phone number)
-- API Keys (Telegram & Gemini)
+- **Python**
+- **Telethon**
+- **Google Gemini API**
+- **python-dotenv**
+- **AsyncIO**
 
-### 2. Installation
-Clone the repo and enter the directory:
+---
+
+# 🚀 Installation
+
+## Clone the Repository
+
 ```bash
-git clone https://github.com/DeepPythonist/teleflow.git
-cd teleflow
+git clone https://github.com/JoshithPotnuru/TeleFlow.git
+cd TeleFlow
 ```
 
-Create your configuration file:
-1.  Rename `.env.example` to `.env`.
-2.  Open `.env` and fill in your details:
-    ```ini
-    API_ID=123456
-    API_HASH=abcdef123456...
-    
-    GEMINI_API_KEY=AQ.Ab8...
-    GEMINI_MODEL=gemini-2.5-flash  # (Optional) Model name
-    
-    SESSION_NAME=teleflow_session  # (Optional) Telethon session name
-    OWNER_ID=123456789  # (Optional) Restrict commands to your ID
-    ```
+---
 
-### 3. Run!
-We provided a magic launcher that handles everything (Virtual Environment, Dependencies, Updates):
+## Configure Environment Variables
+
+Rename
+
+```
+.env.example
+```
+
+to
+
+```
+.env
+```
+
+and add:
+
+```env
+API_ID=YOUR_TELEGRAM_API_ID
+API_HASH=YOUR_TELEGRAM_API_HASH
+
+GEMINI_API_KEY=YOUR_GEMINI_API_KEY
+GEMINI_MODEL=gemini-2.5-flash
+
+SESSION_NAME=teleflow_session
+OWNER_ID=YOUR_TELEGRAM_USER_ID
+```
+
+---
+
+## Get Required Credentials
+
+### Telegram API
+
+Visit:
+
+https://my.telegram.org
+
+Create an application and copy:
+
+- API_ID
+- API_HASH
+
+---
+
+### Gemini API Key
+
+Visit:
+
+https://aistudio.google.com
+
+Generate a Gemini API Key and paste it into `.env`.
+
+---
+
+## Run
 
 ```bash
 python launcher.py
 ```
 
-*On the first run, you will be asked to log in with your Telegram phone number.*
+On first launch you'll be asked for your Telegram phone number and OTP.
 
 ---
 
-## 🎮 Usage
+# 💬 Usage
 
 | Command | Description |
-| :--- | :--- |
-| **`!ask`** | (Reply to a message) The AI reads the history and writes a natural reply for you. |
-| **`!ask <text>`** | (Reply to a message) The AI uses your text as an instruction or draft to write the reply. |
-| **`!help`** | Shows the help menu in saved messages. |
+|----------|-------------|
+| `!ask` | Generate a contextual reply to the replied message |
+| `!ask <instruction>` | Generate a reply following your instruction |
+| `!help` | Display help information |
 
 ---
 
-## ⚙️ Configuration (.env)
+# 📂 Project Structure
 
-| Variable | Description |
-| :--- | :--- |
-| `API_ID` / `API_HASH` | Get these from [my.telegram.org](https://my.telegram.org). |
-| `GEMINI_API_KEY` | Your Google Gemini API key from Google AI Studio. |
-| `GEMINI_MODEL` | (Optional) Model to use (default: `gemini-2.5-flash`). |
-| `SESSION_NAME` | (Optional) Name of the session file (default: `teleflow_session`). |
-| `OWNER_ID` | (Optional) Restrict commands to this specific User ID. |
+```
+TeleFlow/
+│
+├── launcher.py
+├── main.py
+├── config.py
+├── prompt.py
+├── text.py
+├── requirements.txt
+├── .env.example
+├── README.md
+└── venv/
+```
 
 ---
 
-<p align="center">
-Made with ❤️ by <b>DeepPythonist</b>
-</p>
+# 🔐 Security
+
+- Never commit `.env`
+- Never commit `.session` files
+- Keep your Gemini API key private
+- Restrict usage with `OWNER_ID`
+
+---
+
+# 📖 Example
+
+Reply to any Telegram message:
+
+```
+!ask
+```
+
+or
+
+```
+!ask Roast him politely
+```
+
+TeleFlow understands the conversation history and generates a natural reply.
+
+---
+
+# 👨‍💻 Author
+
+**Joshith Potnuru**
+
+GitHub:
+https://github.com/JoshithPotnuru
+
+---
+
+## ⭐ Support
+
+If you found this project useful, consider giving it a ⭐ on GitHub.
